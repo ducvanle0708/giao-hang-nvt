@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<!-- Vỏ app GIAO HÀNG NVT – vỏ v1.0.0. Chỉ chứa link app (đã có PIN bảo vệ), không chứa mã nguồn, không chứa dữ liệu. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f6b35">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="GH NVT">
+<title>GH NVT</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  html, body { margin: 0; height: 100%; background: #f3f5f2; overflow: hidden; }
+  #cho { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font: 16px system-ui, sans-serif; color: #1f6b35; }
+  #cho img { width: 120px; margin-bottom: 12px; }
+  iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
+</style>
+</head>
+<body>
+<div id="cho"><img src="icon-192.png" alt=""><div>Đang mở app giao hàng…</div></div>
+<!-- allow: chuyển quyền GPS, giữ màn hình sáng, máy ảnh cho app bên trong -->
+<iframe id="app" title="GH NVT"
+  src="https://script.google.com/macros/s/AKfycbw-C6R7LqDFAAKukZfa2uUwVfOP-CWVKSe3OkyEtvfRxr9CganNToLa7jZQ53Birey3KA/exec"
+  allow="geolocation *; screen-wake-lock *; camera *; clipboard-write *; fullscreen *"
+  onload="document.getElementById('cho').style.display='none'"></iframe>
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+</script>
+</body>
+</html>
