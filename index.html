@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<!-- Vỏ app GIAO HÀNG NVT – vỏ v1.0.0. Chỉ chứa link app (đã có PIN bảo vệ), không chứa mã nguồn, không chứa dữ liệu. -->
+<!-- Vỏ app GIAO HÀNG NVT – vỏ v1.1.0. Chỉ chứa link app (đã có PIN bảo vệ), không chứa mã nguồn, không chứa dữ liệu. -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1f6b35">
 <meta name="mobile-web-app-capable" content="yes">
@@ -29,6 +29,11 @@
   onload="document.getElementById('cho').style.display='none'"></iframe>
 <script>
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});
+  // vỏ v1.1.0: app bên trong báo có bản mới → tải lại cả trang để lấy bản mới nhất từ Google
+  window.addEventListener('message', function (e) {
+    if (!/\.googleusercontent\.com$/.test(new URL(e.origin).hostname)) return;
+    if (e.data && e.data.ghnvt === 'tai-lai') location.reload();
+  });
 </script>
 </body>
 </html>
